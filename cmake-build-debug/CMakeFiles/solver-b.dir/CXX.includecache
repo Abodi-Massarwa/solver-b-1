@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/abodi/CLionProjects/solver-b/solver.cpp
+solver.hpp
+/home/abodi/CLionProjects/solver-b/solver.hpp
+iostream
+-
+math.h
+-
+
+/home/abodi/CLionProjects/solver-b/solver.hpp
+stdio.h
+-
+complex
+-
+
+/home/abodi/CLionProjects/solver-b/trial.cpp
+solver.hpp
+/home/abodi/CLionProjects/solver-b/solver.hpp
+iostream
+-
+
