@@ -4,11 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/abdms/CLionProjects/solver-b-1/Test_iris.cpp" "C:/Users/abdms/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/solver-b-1.dir/Test_iris.cpp.obj"
-  "C:/Users/abdms/CLionProjects/solver-b-1/Test_shahar.cpp" "C:/Users/abdms/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/solver-b-1.dir/Test_shahar.cpp.obj"
-  "C:/Users/abdms/CLionProjects/solver-b-1/solver.cpp" "C:/Users/abdms/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/solver-b-1.dir/solver.cpp.obj"
+  "/home/abodi/CLionProjects/solver-b-1/solver.cpp" "/home/abodi/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/solver-b-1.dir/solver.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "Clang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

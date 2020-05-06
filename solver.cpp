@@ -112,6 +112,7 @@ RealVariable solver::operator==(const RealVariable& a,double b)
 }
 double solver::solve( RealVariable a)
 {
+    if(a.getx2()==0 && a.getx()==0) throw std::invalid_argument("false!");
     //depends, in case we have a polynomial of rank 1 its solvable in o(1)
     //but in case we have a polynomial of rank 2 , it must be recursive (divide and conquer algorithm)
    if(a.getx2()==0) /* indicates a level 1 polynomial*/

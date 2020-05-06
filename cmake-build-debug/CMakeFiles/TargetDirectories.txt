@@ -1,3 +1,3 @@
-C:/Users/abdms/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/solver-b-1.dir
-C:/Users/abdms/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/abdms/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/abodi/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/abodi/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/abodi/CLionProjects/solver-b-1/cmake-build-debug/CMakeFiles/solver-b-1.dir
