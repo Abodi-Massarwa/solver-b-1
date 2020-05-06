@@ -167,6 +167,7 @@ RealVariable solver::operator^(  const RealVariable& f,double a) //done
 }
 std::complex<double> solver::solve( const ComplexVariable b)
 {
+    if(b.var.getx2()==0&&b.var.getx()==0) throw std::invalid_argument("false!");
     if(b.imag.imag()!=0)
     {
         //indicted rank 1 with complex number
