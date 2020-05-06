@@ -144,14 +144,20 @@ RealVariable solver::operator^(  const RealVariable& f,double a) //done
     }
     //assume a is legal and power is also legal
     // it might be x^2 or (x+c)^2
+    //forgot about power 1 or 0
     if(f.getre()==0)
     {
-        RealVariable rv(pow(f.getx(),2),0,0);
+        RealVariable rv(pow(f.getx(),a),0,0);
         return rv;
 
     }
+    RealVariable rv;
     //else +c
+    if(a==1) return f;
+    if(a==2)
     RealVariable rv(pow(f.getx(),2),2*f.getx()*f.getre(),pow(f.getre(),2)); //a^2 +2ab+b^2
+   else if(a==0) RealVariable rv(0,0,1);
+
     return rv;
 }
 std::complex<double> solver::solve( const ComplexVariable b)
