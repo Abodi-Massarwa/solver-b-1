@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/solver-b.dir/solver.cpp.o"
-  "CMakeFiles/solver-b.dir/trial.cpp.o"
-  "solver-b"
+  "CMakeFiles/solver-b.dir/solver.cpp.obj"
+  "CMakeFiles/solver-b.dir/trial.cpp.obj"
+  "libsolver-b.dll.a"
+  "solver-b.exe"
+  "solver-b.exe.manifest"
   "solver-b.pdb"
 )
 

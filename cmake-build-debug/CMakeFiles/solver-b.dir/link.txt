@@ -1,1 +1,3 @@
-/usr/bin/clang++-9  -g   CMakeFiles/solver-b.dir/trial.cpp.o CMakeFiles/solver-b.dir/solver.cpp.o  -o solver-b 
+"C:\Program Files\JetBrains\CLion 2019.3.5\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\solver-b.dir/objects.a
+C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\ar.exe cr CMakeFiles\solver-b.dir/objects.a @CMakeFiles\solver-b.dir\objects1.rsp
+C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE -g   -Wl,--whole-archive CMakeFiles\solver-b.dir/objects.a -Wl,--no-whole-archive  -o solver-b.exe -Wl,--out-implib,libsolver-b.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\solver-b.dir\linklibs.rsp

@@ -6,10 +6,8 @@
 using namespace solver;
 int main()
 {
-///RealVariable x(1,2,-15);
-RealVariable y;
-std::cout<<solve(((1*y)^2)+2*y-15);
-///no problem with rank 1 polynomials !
-// but rank 2 wtf !
+solver::ComplexVariable n(1,0,1);
+//n+2;
+std::cout<<solver::solve(n);
     return 0;
 }

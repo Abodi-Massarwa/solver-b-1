@@ -6,23 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/abodi/CLionProjects/solver-b/solver.cpp
+C:/Users/abdms/CLionProjects/solver-b-1/solver.cpp
 solver.hpp
-/home/abodi/CLionProjects/solver-b/solver.hpp
+C:/Users/abdms/CLionProjects/solver-b-1/solver.hpp
 iostream
 -
 math.h
 -
 
-/home/abodi/CLionProjects/solver-b/solver.hpp
+C:/Users/abdms/CLionProjects/solver-b-1/solver.hpp
 stdio.h
 -
 complex
--
-
-/home/abodi/CLionProjects/solver-b/trial.cpp
-solver.hpp
-/home/abodi/CLionProjects/solver-b/solver.hpp
-iostream
 -
 

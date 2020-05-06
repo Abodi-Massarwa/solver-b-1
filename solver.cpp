@@ -5,113 +5,112 @@
 #include <iostream>
 #include <math.h>
 using namespace solver;
-RealVariable& solver::operator*(double a, RealVariable& f)
+RealVariable solver::operator*(double a, const RealVariable& f)
 {
- f.re*=a;
- f.x*=a;
- f.x2*=a;
- return f;
+    RealVariable rv(f.getx2()*a,f.getx()*a,f.getre()*a);
+ return rv;
 }
-RealVariable& operator*( RealVariable& f,double a)
+RealVariable solver::operator*( const RealVariable& f,double a)
 {
     return solver::operator*(a,f);
 }
-RealVariable& solver::operator*( RealVariable& f, RealVariable& g)
+RealVariable solver::operator*( const RealVariable& f, const RealVariable& g)
 {
-    f.re*g;
-    f.x*g;
-    f.x2*g;
-    return g;
+    //RealVariable rvx2=f.getx2()*g;
+    RealVariable rvx=f.getx()*(g);
+    RealVariable rvreal= f.getre() *(g);
+    RealVariable rv(rvx.getx2() + rvreal.getx2(), rvx.getx() + rvreal.getx(), rvx.getre() + rvreal.getre());
+    return rv;
 }
-RealVariable& solver::operator+(double a, const RealVariable& f)
+RealVariable solver::operator+(double a, const RealVariable& f)
 {
     RealVariable rv(f.x2,f.x,f.re+a);
     return rv;
 }
-RealVariable& solver::operator+( const RealVariable& f,double a)
+RealVariable solver::operator+( const RealVariable& f,double a)
 {
     return  solver::operator+(a,f);
 }
-RealVariable& solver::operator+(const RealVariable& f,const RealVariable& g)
+RealVariable solver::operator+(const RealVariable& f,const RealVariable& g)
 {
    RealVariable temp(f.x2+g.x2,f.x+g.x,f.re+g.re);
    return temp;
 }
-RealVariable& solver::operator-(const RealVariable& f,const RealVariable& g)
+RealVariable solver::operator-(const RealVariable& f,const RealVariable& g)
 {
     RealVariable temp(f.x2-g.x2,f.x-g.x,f.re-g.re);
     return temp;
 }
-RealVariable& solver::operator-(double a, const RealVariable& f)
+RealVariable solver::operator-(double a, const RealVariable& f)
 {
     return solver::operator+(-a,f);
 }
-RealVariable& solver::operator-( const RealVariable& f,double a)
+RealVariable solver::operator-( const RealVariable& f,double a)
 {
     return  solver::operator+(f,-a);
 }
 double power(double,int);
-RealVariable& solver::operator^( const RealVariable& f,double a)
-{
-    //a^2+2ab+b^2
-    //if f^a -> pow >2 throw exception
-    std::string str="sorry we cant deal with power >2";
-    if(f.x2!=0)
-    {
-        //indicates that it cant be even risen with any a
-        //except for 0 and 1
-        if(a!=0&&a!=1)
-        {
-            try {
-                throw str;
-            }
-            catch(std::string& str)
-            {
-                std::abort();
-            }
-
-        }
-    }
-    else if(f.x!=0)
-    {
-        if(a>2)
-        {
-            try {
-                throw str;
-            }
-            catch(std::string& str)
-            {
-                std::abort();
-            }
-
-        }
-    }
-    /// now assume we're clear to go .
-    RealVariable xx(pow(f.x2,a),2*f.x*f.re,power(f.re,a));
-    return xx;
-
-}
+//RealVariable& solver::operator^( const RealVariable& f,double a)
+//{
+//    //a^2+2ab+b^2
+//    //if f^a -> pow >2 throw exception
+//    std::string str="sorry we cant deal with power >2";
+//    if(f.x2!=0)
+//    {
+//        //indicates that it cant be even risen with any a
+//        //except for 0 and 1
+//        if(a!=0&&a!=1)
+//        {
+//            try {
+//                throw str;
+//            }
+//            catch(std::string& str)
+//            {
+//                std::abort();
+//            }
+//
+//        }
+//    }
+//    else if(f.x!=0)
+//    {
+//        if(a>2)
+//        {
+//            try {
+//                throw str;
+//            }
+//            catch(std::string& str)
+//            {
+//                std::abort();
+//            }
+//
+//        }
+//    }
+//    /// now assume we're clear to go .
+//    RealVariable xx(pow(f.x2,a),2*f.x*f.re,power(f.re,a));
+//    return xx;
+//
+//}
 double power(double x, int a)
 {
     if(a==0) return 1;
     return x*power(x,a-1);
 }
-RealVariable& solver::operator/(const RealVariable& h,double e)// more likely wont be fx/gx
+RealVariable solver::operator/(const RealVariable& h,double e)// more likely wont be fx/gx
 {
     RealVariable rv(h.x2/e,h.x/e,h.re/e);
     return rv;
 }
-RealVariable& solver::operator==(const RealVariable& a,const RealVariable& b)
+RealVariable solver::operator==(const RealVariable& a,const RealVariable& b)
 {
     RealVariable rv(a.x2-b.x2,a.x-b.x,a.re-b.re);
     return rv;
 }
-RealVariable& solver::operator==(const RealVariable& a,double b)
+RealVariable solver::operator==(const RealVariable& a,double b)
 {
     RealVariable rv(a.x2,a.x,a.re-b);
     return rv;
 }
-double solver::solve( RealVariable& a)
+double solver::solve( RealVariable a)
 {
     //depends, in case we have a polynomial of rank 1 its solvable in o(1)
     //but in case we have a polynomial of rank 2 , it must be recursive (divide and conquer algorithm)
@@ -123,9 +122,129 @@ double solver::solve( RealVariable& a)
 
    }
    double coff=(-1*a.getx());
-    double root=sqrt((a.getx()*a.getx()-4*a.getx2()*a.getre()))/(2*a.getx2());
-    double ans_1=coff+root;
-    double ans_2=coff-root;
-    return ans_2;
+    double root=sqrt((a.getx()*a.getx()-4*a.getx2()*a.getre()));
+    double ans_1=(coff+root)/(2*a.getx2());
+    double ans_2=(coff-root)/(2*a.getx2());
+    if(ans_1==ans_1) return ans_1;
+    throw "Can't solve for complex since your var is Real !";
 
+}
+RealVariable solver::operator^(  const RealVariable& f,double a) //done
+{
+    /* in case we have normal variable we must deal with it normally but if we suppose have (ax^2+bx+c)^n then we must deal with it differently */
+    if(a>2||a<0)
+    {
+        throw "can't deal with functions more than level 2 or negative power";
+    }
+    /// assume power is legal !
+    if(f.getx2()!=0)
+    {
+        throw "bro we don't deal with polynomials raised to power>2";
+    }
+    //assume a is legal and power is also legal
+    // it might be x^2 or (x+c)^2
+    if(f.getre()==0)
+    {
+        RealVariable rv(pow(f.getx(),2),0,0);
+        return rv;
+
+    }
+    //else +c
+    RealVariable rv(pow(f.getx(),2),2*f.getx()*f.getre(),pow(f.getre(),2)); //a^2 +2ab+b^2
+    return rv;
+}
+std::complex<double> solver::solve( ComplexVariable b)
+{
+    double real_ans;
+    bool isreal=true;
+    try {
+        real_ans=solver::solve(b.var);
+    }
+    catch (char const*)
+    {
+    isreal= false;
+    }
+   if(isreal) return std::complex<double>(real_ans,0);
+    //else its complex
+    double part1=((-b.var.getx())/2*b.var.getx2());
+    double part2=(sqrt(-(pow(b.var.getx(),2)-4*b.var.getx2()*b.var.getre())/(2*b.var.getx2())));
+    return std::complex<double>(part1,part2);
+}
+ComplexVariable solver::operator*(double a, const ComplexVariable& f)
+{
+    RealVariable rv=a*f.var;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator*( const ComplexVariable& f,double a)
+{
+    RealVariable rv=f.var*a;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator*( const ComplexVariable& f, const ComplexVariable& g)
+{
+    RealVariable rv=f.var*g.var;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator-(const ComplexVariable& f,double a)
+{
+    RealVariable rv=f.var-a;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator-(const ComplexVariable& f,const ComplexVariable& e)
+{
+    RealVariable rv=f.var-e.var;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator-(double a, const ComplexVariable& f)
+{
+    RealVariable rv=a-f.var;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator/(const ComplexVariable& h,double e)
+{
+    RealVariable rv=h.var/e;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator^( const ComplexVariable& f,double a)
+{
+    RealVariable rv=(f.var^a);
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator+(const ComplexVariable& x,const ComplexVariable& f)
+{
+    RealVariable rv=x.var+f.var;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator+(const ComplexVariable& x,double a)
+{
+    RealVariable rv=x.var+a;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator+(double a,const ComplexVariable& x)
+{
+    RealVariable rv=a+x.var;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator==(const ComplexVariable& a,const ComplexVariable& b)
+{
+    RealVariable rv=a.var==b.var;
+    ComplexVariable cv(rv);
+    return cv;
+}
+ComplexVariable solver::operator==(const ComplexVariable& a,double e)
+{
+    RealVariable rv=a.var==e;
+    ComplexVariable cv(rv);
+    return cv;
 }
