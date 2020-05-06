@@ -155,6 +155,12 @@ RealVariable solver::operator^(  const RealVariable& f,double a) //done
 }
 std::complex<double> solver::solve( const ComplexVariable b)
 {
+    if(b.imag.imag()!=0)
+    {
+        //indicted rank 1 with complex number
+        std::complex<double> answer(b.var.getre()+b.imag.real(),b.imag.imag());
+        return -answer;
+    }
     double real_ans=0;
     bool isreal=true;
     try {
@@ -166,6 +172,11 @@ std::complex<double> solver::solve( const ComplexVariable b)
     }
    if(isreal) return std::complex<double>(real_ans,0);
     //else its complex
+//    if(b.imag.imag()!=0)
+//    {
+//        //indicted rank 1 with complex number
+//        return -b.imag;
+//    }
     double part1=((-b.var.getx())/2*b.var.getx2());
     double part2=(sqrt(-(pow(b.var.getx(),2)-4*b.var.getx2()*b.var.getre()))/(2*b.var.getx2()));
     return std::complex<double>(part1,part2);
@@ -240,6 +251,8 @@ ComplexVariable solver::operator==(const ComplexVariable& a,const ComplexVariabl
 {
     RealVariable rv=a.var==b.var;
     ComplexVariable cv(rv);
+    std::complex<double> free_num=a.imag-b.imag;
+    cv.imag=free_num;
     return cv;
 }
 ComplexVariable solver::operator==(const ComplexVariable& a,double e)
@@ -247,4 +260,14 @@ ComplexVariable solver::operator==(const ComplexVariable& a,double e)
     RealVariable rv=a.var==e;
     ComplexVariable cv(rv);
     return cv;
+}
+
+ComplexVariable solver::operator+(const ComplexVariable &a, std::complex<double> comp) {
+    ComplexVariable cv(a);
+    cv.imag+=comp; ///must be implemented in std::complex
+    return cv;
+}
+
+ComplexVariable solver::operator+(std::complex<double> comp, const ComplexVariable &a) {
+    return a+comp;
 }

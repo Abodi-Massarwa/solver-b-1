@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/abdms/CLionProjects/solver-b-1/solver.cpp
+solver.hpp
+C:/Users/abdms/CLionProjects/solver-b-1/solver.hpp
+iostream
+-
+math.h
+-
+
+C:/Users/abdms/CLionProjects/solver-b-1/solver.hpp
+stdio.h
+-
+complex
+-
+

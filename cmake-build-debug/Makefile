@@ -110,17 +110,71 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named solver-b
+# Target rules for targets named solver-b-1
 
 # Build rule for target.
-solver-b: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 solver-b
-.PHONY : solver-b
+solver-b-1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 solver-b-1
+.PHONY : solver-b-1
 
 # fast build rule for target.
-solver-b/fast:
-	$(MAKE) -f CMakeFiles\solver-b.dir\build.make CMakeFiles/solver-b.dir/build
-.PHONY : solver-b/fast
+solver-b-1/fast:
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/build
+.PHONY : solver-b-1/fast
+
+Test_iris.obj: Test_iris.cpp.obj
+
+.PHONY : Test_iris.obj
+
+# target to build an object file
+Test_iris.cpp.obj:
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/Test_iris.cpp.obj
+.PHONY : Test_iris.cpp.obj
+
+Test_iris.i: Test_iris.cpp.i
+
+.PHONY : Test_iris.i
+
+# target to preprocess a source file
+Test_iris.cpp.i:
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/Test_iris.cpp.i
+.PHONY : Test_iris.cpp.i
+
+Test_iris.s: Test_iris.cpp.s
+
+.PHONY : Test_iris.s
+
+# target to generate assembly for a file
+Test_iris.cpp.s:
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/Test_iris.cpp.s
+.PHONY : Test_iris.cpp.s
+
+Test_shahar.obj: Test_shahar.cpp.obj
+
+.PHONY : Test_shahar.obj
+
+# target to build an object file
+Test_shahar.cpp.obj:
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/Test_shahar.cpp.obj
+.PHONY : Test_shahar.cpp.obj
+
+Test_shahar.i: Test_shahar.cpp.i
+
+.PHONY : Test_shahar.i
+
+# target to preprocess a source file
+Test_shahar.cpp.i:
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/Test_shahar.cpp.i
+.PHONY : Test_shahar.cpp.i
+
+Test_shahar.s: Test_shahar.cpp.s
+
+.PHONY : Test_shahar.s
+
+# target to generate assembly for a file
+Test_shahar.cpp.s:
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/Test_shahar.cpp.s
+.PHONY : Test_shahar.cpp.s
 
 solver.obj: solver.cpp.obj
 
@@ -128,7 +182,7 @@ solver.obj: solver.cpp.obj
 
 # target to build an object file
 solver.cpp.obj:
-	$(MAKE) -f CMakeFiles\solver-b.dir\build.make CMakeFiles/solver-b.dir/solver.cpp.obj
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/solver.cpp.obj
 .PHONY : solver.cpp.obj
 
 solver.i: solver.cpp.i
@@ -137,7 +191,7 @@ solver.i: solver.cpp.i
 
 # target to preprocess a source file
 solver.cpp.i:
-	$(MAKE) -f CMakeFiles\solver-b.dir\build.make CMakeFiles/solver-b.dir/solver.cpp.i
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/solver.cpp.i
 .PHONY : solver.cpp.i
 
 solver.s: solver.cpp.s
@@ -146,7 +200,7 @@ solver.s: solver.cpp.s
 
 # target to generate assembly for a file
 solver.cpp.s:
-	$(MAKE) -f CMakeFiles\solver-b.dir\build.make CMakeFiles/solver-b.dir/solver.cpp.s
+	$(MAKE) -f CMakeFiles\solver-b-1.dir\build.make CMakeFiles/solver-b-1.dir/solver.cpp.s
 .PHONY : solver.cpp.s
 
 # Help Target
@@ -155,9 +209,15 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... solver-b
+	@echo ... solver-b-1
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Test_iris.obj
+	@echo ... Test_iris.i
+	@echo ... Test_iris.s
+	@echo ... Test_shahar.obj
+	@echo ... Test_shahar.i
+	@echo ... Test_shahar.s
 	@echo ... solver.obj
 	@echo ... solver.i
 	@echo ... solver.s

@@ -62,12 +62,14 @@ friend RealVariable operator==(const RealVariable& a,double e);
 class ComplexVariable{
 public:
 RealVariable var;
-ComplexVariable(const ComplexVariable  &f):var(f.var.getx2(),f.var.getx(),f.var.getre()){}
- ComplexVariable(double x2=0,double x=1,double re=0):var(x2,x,re){}
- ComplexVariable(RealVariable& f):var(f){}
+std::complex<double> imag;
+ComplexVariable(const ComplexVariable  &f):var(f.var.getx2(),f.var.getx(),f.var.getre()),imag(f.imag){}
+ ComplexVariable(double x2=0,double x=1,double re=0,std::complex<double> a=(0,0)):var(x2,x,re),imag(a){}
+ ComplexVariable(RealVariable& f):var(f),imag((0,0)){}
     ComplexVariable& operator =(const ComplexVariable& a)
     {
         this->var=a.var;
+        this->imag=a.imag;
         return *this;
     }
     friend ComplexVariable operator*(double a,  ComplexVariable& f);
@@ -83,6 +85,8 @@ ComplexVariable(const ComplexVariable  &f):var(f.var.getx2(),f.var.getx(),f.var.
     friend ComplexVariable operator+(double a,const ComplexVariable& x);
     friend ComplexVariable operator==(const ComplexVariable& a,const ComplexVariable& b);
     friend ComplexVariable operator==(const ComplexVariable& a,double e);
+    friend ComplexVariable operator+(const ComplexVariable& a,std::complex<double> comp);
+    friend ComplexVariable operator+(std::complex<double> comp,const ComplexVariable& a);
 };
      ComplexVariable operator*(double a,  ComplexVariable& f);
     ComplexVariable operator*( const ComplexVariable& f,double a);
@@ -101,5 +105,8 @@ ComplexVariable(const ComplexVariable  &f):var(f.var.getx2(),f.var.getx(),f.var.
     double solve( RealVariable a);
 
 std::complex<double> solve( ComplexVariable b);
-
+//     std::complex <double> operator"" i(long double d )
+//    {
+//        return std::complex <double> { 0.0 , static_cast <double> ( d ) };
+//    }
 }
