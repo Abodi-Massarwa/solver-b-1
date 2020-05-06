@@ -92,6 +92,9 @@
 		<Unit filename="/home/abodi/CLionProjects/solver-b-1/solver.hpp">
 			<Option target="solver-b-1"/>
 		</Unit>
+		<Unit filename="/home/abodi/CLionProjects/solver-b-1/trial.cpp">
+			<Option target="solver-b-1"/>
+		</Unit>
 		<Unit filename="/home/abodi/CLionProjects/solver-b-1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

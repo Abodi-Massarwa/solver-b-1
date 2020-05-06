@@ -150,6 +150,33 @@ solver.cpp.s:
 	$(MAKE) -f CMakeFiles/solver-b-1.dir/build.make CMakeFiles/solver-b-1.dir/solver.cpp.s
 .PHONY : solver.cpp.s
 
+trial.o: trial.cpp.o
+
+.PHONY : trial.o
+
+# target to build an object file
+trial.cpp.o:
+	$(MAKE) -f CMakeFiles/solver-b-1.dir/build.make CMakeFiles/solver-b-1.dir/trial.cpp.o
+.PHONY : trial.cpp.o
+
+trial.i: trial.cpp.i
+
+.PHONY : trial.i
+
+# target to preprocess a source file
+trial.cpp.i:
+	$(MAKE) -f CMakeFiles/solver-b-1.dir/build.make CMakeFiles/solver-b-1.dir/trial.cpp.i
+.PHONY : trial.cpp.i
+
+trial.s: trial.cpp.s
+
+.PHONY : trial.s
+
+# target to generate assembly for a file
+trial.cpp.s:
+	$(MAKE) -f CMakeFiles/solver-b-1.dir/build.make CMakeFiles/solver-b-1.dir/trial.cpp.s
+.PHONY : trial.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... solver.o"
 	@echo "... solver.i"
 	@echo "... solver.s"
+	@echo "... trial.o"
+	@echo "... trial.i"
+	@echo "... trial.s"
 .PHONY : help
 
 

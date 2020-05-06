@@ -1,1 +1,1 @@
-/usr/bin/clang++-9  -g   CMakeFiles/solver-b-1.dir/solver.cpp.o  -o solver-b-1 
+/usr/bin/clang++-9  -g   CMakeFiles/solver-b-1.dir/trial.cpp.o CMakeFiles/solver-b-1.dir/solver.cpp.o  -o solver-b-1 

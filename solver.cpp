@@ -143,12 +143,17 @@ RealVariable solver::operator^(  const RealVariable& f,double a) //done
         throw "bro we don't deal with polynomials raised to power>2";
     }
     //assume a is legal and power is also legal
-    // it might be x^2 or (x+c)^2
+    // it might be x^a or (x+c)^a such that a ==0,1,or 2
+    // no case for x^2 raised to another power we only need to check for re and x
     //forgot about power 1 or 0
     if(f.getre()==0)
     {
-        RealVariable rv(pow(f.getx(),a),0,0);
-        return rv;
+        if(a==2)
+        return RealVariable (pow(f.getx(),a),0,0);
+        else if(a==1) return f;
+        else //a==0
+        return RealVariable(0,0,1);
+
 
     }
     RealVariable rv;
