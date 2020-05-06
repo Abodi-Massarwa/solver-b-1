@@ -19,10 +19,12 @@ RealVariable operator-(double a)
     RealVariable rv(this->getx2(),this->getx(),this->getre()-a);
     return rv;
 }
-    RealVariable operator=(const RealVariable& a)
+    RealVariable& operator=(const RealVariable& a)
             {
-        RealVariable count(a.x2,a.x,a.re);
-        return count;
+        x2=a.x2;
+        x=a.x;
+        re=a.re;
+        return *this;
     }
 // we better return a reference since we haven't implemented a copy constructor
 // although compilers have their own version of copy constructor for trivial objects
@@ -60,11 +62,15 @@ friend RealVariable operator==(const RealVariable& a,double e);
 class ComplexVariable{
 public:
 RealVariable var;
-ComplexVariable(ComplexVariable &f):var(f.var.getx2(),f.var.getx(),f.var.getre()){}
-explicit ComplexVariable(double x2=0,double x=1,double re=0):var(x2,x,re){}
-explicit ComplexVariable(RealVariable &f):var(f){}
-
-    friend ComplexVariable operator*(double a, const ComplexVariable& f);
+ComplexVariable(const ComplexVariable  &f):var(f.var.getx2(),f.var.getx(),f.var.getre()){}
+ ComplexVariable(double x2=0,double x=1,double re=0):var(x2,x,re){}
+ ComplexVariable(RealVariable& f):var(f){}
+    ComplexVariable& operator =(const ComplexVariable& a)
+    {
+        this->var=a.var;
+        return *this;
+    }
+    friend ComplexVariable operator*(double a,  ComplexVariable& f);
     friend ComplexVariable operator*( const ComplexVariable& f,double a);
     friend ComplexVariable operator*( const ComplexVariable& f, const ComplexVariable&g);
     friend ComplexVariable operator-(const ComplexVariable& f,double a);
@@ -78,7 +84,7 @@ explicit ComplexVariable(RealVariable &f):var(f){}
     friend ComplexVariable operator==(const ComplexVariable& a,const ComplexVariable& b);
     friend ComplexVariable operator==(const ComplexVariable& a,double e);
 };
-     ComplexVariable operator*(double a, const ComplexVariable& f);
+     ComplexVariable operator*(double a,  ComplexVariable& f);
     ComplexVariable operator*( const ComplexVariable& f,double a);
      ComplexVariable operator*( const ComplexVariable& f, const ComplexVariable&g);
      ComplexVariable operator-(const ComplexVariable& f,double a);

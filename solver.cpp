@@ -126,7 +126,7 @@ double solver::solve( RealVariable a)
     double ans_1=(coff+root)/(2*a.getx2());
     double ans_2=(coff-root)/(2*a.getx2());
     if(ans_1==ans_1) return ans_1;
-    throw "Can't solve for complex since your var is Real !";
+    throw  std::invalid_argument( "received complex value" );
 
 }
 RealVariable solver::operator^(  const RealVariable& f,double a) //done
@@ -153,24 +153,24 @@ RealVariable solver::operator^(  const RealVariable& f,double a) //done
     RealVariable rv(pow(f.getx(),2),2*f.getx()*f.getre(),pow(f.getre(),2)); //a^2 +2ab+b^2
     return rv;
 }
-std::complex<double> solver::solve( ComplexVariable b)
+std::complex<double> solver::solve( const ComplexVariable b)
 {
-    double real_ans;
+    double real_ans=0;
     bool isreal=true;
     try {
         real_ans=solver::solve(b.var);
     }
-    catch (char const*)
+    catch (std::invalid_argument& e)
     {
     isreal= false;
     }
    if(isreal) return std::complex<double>(real_ans,0);
     //else its complex
     double part1=((-b.var.getx())/2*b.var.getx2());
-    double part2=(sqrt(-(pow(b.var.getx(),2)-4*b.var.getx2()*b.var.getre())/(2*b.var.getx2())));
+    double part2=(sqrt(-(pow(b.var.getx(),2)-4*b.var.getx2()*b.var.getre()))/(2*b.var.getx2()));
     return std::complex<double>(part1,part2);
 }
-ComplexVariable solver::operator*(double a, const ComplexVariable& f)
+ComplexVariable solver::operator*(double a,  solver::ComplexVariable& f)
 {
     RealVariable rv=a*f.var;
     ComplexVariable cv(rv);

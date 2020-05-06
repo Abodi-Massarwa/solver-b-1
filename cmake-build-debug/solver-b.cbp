@@ -86,9 +86,6 @@
 		<Unit filename="C:/Users/abdms/CLionProjects/solver-b-1/solver.hpp">
 			<Option target="solver-b"/>
 		</Unit>
-		<Unit filename="C:/Users/abdms/CLionProjects/solver-b-1/trial.cpp">
-			<Option target="solver-b"/>
-		</Unit>
 		<Unit filename="C:/Users/abdms/CLionProjects/solver-b-1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
