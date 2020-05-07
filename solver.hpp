@@ -72,7 +72,7 @@ ComplexVariable(const ComplexVariable  &f):var(f.var.getx2(),f.var.getx(),f.var.
         this->imag=a.imag;
         return *this;
     }
-    friend ComplexVariable operator*(double a,  ComplexVariable& f);
+    friend ComplexVariable operator*(double a, const ComplexVariable& f);
     friend ComplexVariable operator*( const ComplexVariable& f,double a);
     friend ComplexVariable operator*( const ComplexVariable& f, const ComplexVariable&g);
     friend ComplexVariable operator-(const ComplexVariable& f,double a);
@@ -88,7 +88,7 @@ ComplexVariable(const ComplexVariable  &f):var(f.var.getx2(),f.var.getx(),f.var.
     friend ComplexVariable operator+(const ComplexVariable& a,std::complex<double> comp);
     friend ComplexVariable operator+(std::complex<double> comp,const ComplexVariable& a);
 };
-     ComplexVariable operator*(double a,  ComplexVariable& f);
+     ComplexVariable operator*(double a, const ComplexVariable& f);
     ComplexVariable operator*( const ComplexVariable& f,double a);
      ComplexVariable operator*( const ComplexVariable& f, const ComplexVariable&g);
      ComplexVariable operator-(const ComplexVariable& f,double a);

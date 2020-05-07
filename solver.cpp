@@ -150,7 +150,7 @@ RealVariable solver::operator^(  const RealVariable& f,double a) //done
     {
         if(a==2)
         return RealVariable (pow(f.getx(),a),0,0);
-        else if(a==1) return f;
+        else if(a==1) return RealVariable(f);
         else //a==0
         return RealVariable(0,0,1);
 
@@ -158,7 +158,7 @@ RealVariable solver::operator^(  const RealVariable& f,double a) //done
     }
     RealVariable rv;
     //else +c
-    if(a==1) return f;
+    if(a==1) return RealVariable(f);
     if(a==2)
     RealVariable rv(pow(f.getx(),2),2*f.getx()*f.getre(),pow(f.getre(),2)); //a^2 +2ab+b^2
    else if(a==0) RealVariable rv(0,0,1);
@@ -194,7 +194,7 @@ std::complex<double> solver::solve( const ComplexVariable b)
     double part2=(sqrt(-(pow(b.var.getx(),2)-4*b.var.getx2()*b.var.getre()))/(2*b.var.getx2()));
     return std::complex<double>(part1,part2);
 }
-ComplexVariable solver::operator*(double a,  solver::ComplexVariable& f)
+ComplexVariable solver::operator*(double a,  const solver::ComplexVariable& f)
 {
     RealVariable rv=a*f.var;
     ComplexVariable cv(rv);
